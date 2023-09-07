@@ -9,6 +9,9 @@ class Response extends Model
 {
     protected $table='responses';
     protected $fillable=['response'];
+    
+
+
     public function responseSent()
     {
         // hasOne(關聯/對方的欄位/自己的欄位)

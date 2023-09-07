@@ -102,10 +102,16 @@ class HwController extends Controller
     {
         // dd('123');
         $de = Response::find($id);
+
+        foreach($de->responseSent ?? [] as $value){
+            $value->delete();
+        }
         $de->delete();
-        $reDe = ResponseSent::get();
+        // $reDe = ResponseSent::get();
         // dd($reDe);
         // $reDe->delete();
+        // -------------------
+
         return redirect(route('hw.index'));
 
 
