@@ -19,8 +19,9 @@ class CartTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $user=$request->user();
         $types = ProductType::get();
         // $typesImg = ProductType::get();
         // dd($typesImg->productType);

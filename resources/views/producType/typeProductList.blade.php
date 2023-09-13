@@ -1,4 +1,4 @@
-@extends('Layout.template')
+@extends('templates.template')
 @section('css')
 @endsection
 
@@ -13,7 +13,7 @@
             <div class="col-12 offset-md-1 col-md-5   ">
                 <div class="row">
                     <div class="col-12">
-                        <h2>Product list</h2>
+                        <h2>Type list</h2>
                     </div>
                     <div class="col-3"><span>Dashboard</span></div>
                     <div class="col-6"><span class="text-black-50">Categories</span></div>
@@ -82,12 +82,12 @@
                             <a href="{{ route('type.edit', ['type' => $type->id]) }}">
                                 <button type="submit" class="btn mb-2 btn-success  btn-success-self">Edit</button>
                             </a>
-                            <form class="deleteBtn" action="{{ route('type.destroy', ['type' => $type->id]) }}"
+                            {{-- <form class="deleteBtn" action="{{ route('type.destroy', ['type' => $type->id]) }}"
                                 method="POST" data-name="{{ $type->name }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn  btn-success  btn-success-self">Delete</button>
-                            </form>
+                            </form> --}}
                             <button type="button" class="btn  btn-success  btn-success-self"
                                 onclick="deleteData({{ $type->id }})">Delete</button>
                         </div>
@@ -183,7 +183,7 @@
         function deleteData(id, name) {
             console.log(id);
             const formData = new FormData();
-            formData.append('_token', '{{ csrf_token() }}');
+            formData.append('_token', '{{ csrf_token() }}');3
             formData.append('_method', 'delete');
             Swal.fire({
                 title: `確認要刪除${name}嗎?`,
@@ -217,11 +217,7 @@
                         }
                     });
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: '刪除失敗',
-                        text: '查無資料',
-                    });
+
                 }
             })
 

@@ -12,10 +12,10 @@
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <!-- Local CSS -->
-  <link rel="stylesheet" href="./css/all.css">
-  <link rel="stylesheet" href="./css/down.css">
+  <link rel="stylesheet" href="{{asset('css/all.css')}}">
+  <link rel="stylesheet" href="{{asset('css/down.css')}}">
   <!-- Local Swiper CSS -->
-  <link rel="stylesheet" href="./css/swiper.css">
+  <link rel="stylesheet" href="{{asset('css/swiper.css')}}">
 
 
 </head>
@@ -63,27 +63,6 @@
             <span>Location</span>
           </button>
         </div>
-        @auth
-            <div style="white-space: nowrap;" class="d-flex align-items-center me-3">
-                hi,{{Auth::user()->name}}
-            </div>
-            <div>
-                <form method="POST" action="{{route('logout')}}">
-                    @csrf
-                    <button class="btn btn-success" style=" white-space: nowrap;">登出</button>
-                </form>
-            </div>
-        @endauth
-
-        @guest
-            <div>
-                <a href="{{route('login')}}"  style=" white-space: nowrap;" >
-                    <button class="btn btn-success">hi,訪客,點此登入</button>
-                </a>
-                {{-- <br> --}}
-                {{-- <a href="{{route('nameTest')}}" style=" white-space: nowrap;">點我進入測試頁</a> --}}
-            </div>
-        @endguest
         <div class="top-search-right d-flex align-items-center">
           <a href="#" class="position-relative d-none d-lg-block ">
             <i class="bi bi-heart top-icon"></i>
@@ -92,7 +71,7 @@
           <a href="{{route('user.info')}}">
             <i class="bi bi-person top-icon"></i>
           </a>
-          <a href="{{route('shopOrderdetailsGet')}}" class="position-relative">
+          <a href="#" class="position-relative">
             <i class="bi bi-cart2 top-icon"></i>
             <span class="position-absolute badge badge-circle text-bg-success rounded-circle">1</span>
           </a>
@@ -135,16 +114,216 @@
                 </ul>
 
               </div>
+              <!-- accordion test to do -->
+              <div class="accordion" id="accordionExample">
+                <!-- Home -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Home
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fs-6-7">
+                      <a class="dropdown-item" href="#">Home 1</a>
+                      <a class="dropdown-item" href="#">Home 2</a>
+                      <a class="dropdown-item" href="#">Home 3</a>
+                      <a class="dropdown-item" href="#">Home 4</a>
+                      <a class="dropdown-item" href="#">Home 5<span class="badge light-blue ms-1">New</span></a>
 
+                    </div>
+                  </div>
+                </div>
+                <!-- Shop -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Shop
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body  fs-6-7">
+                      <a class="dropdown-item" href="#">Shop Grid - Filter</a>
+                      <a class="dropdown-item" href="#">Shop Grid - 3 column</a>
+                      <a class="dropdown-item" href="#">Shop List - Filter</a>
+                      <a class="dropdown-item" href="#">Shop - Filter</a>
+                      <a class="dropdown-item" href="#">Shop Single</a>
+                      <a class="dropdown-item" href="#">Shop Single v2</a>
+                      <a class="dropdown-item" href="#">Shop Wishlist</a>
+                      <a class="dropdown-item" href="#">Shop Cart</a>
+                      <a class="dropdown-item" href="#">Shop Checkout</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Stores -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Stores
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fs-6-7">
+                      <a class="dropdown-item" href="#">Store List</a>
+                      <a class="dropdown-item" href="#">Store Grid</a>
+                      <a class="dropdown-item" href="#">Store Single</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Mega menu -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      Mega menu
+                    </button>
+                  </h2>
+                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fs-6-7">
+                      <ul>
+                        <li>
+                          <!-- Mega menu 第一列 -->
+                          <h6 class="main-green-color">Dairy, Bread & Eggs</h6>
+                          <a class="dropdown-item" href="#">Butter</a>
+                          <a class="dropdown-item" href="#">Milk Drinks</a>
+                          <a class="dropdown-item" href="#">Curd & Yogurt</a>
+                          <a class="dropdown-item" href="#">Eggs</a>
+                          <a class="dropdown-item" href="#">Buns & Bakery</a>
+                          <a class="dropdown-item" href="#">Cheese</a>
+                          <a class="dropdown-item" href="#">Condensed Milk</a>
+                          <a class="dropdown-item" href="#">Dairy Products</a>
+                        </li>
+                        <li class="mt-3">
+                          <!-- Mega menu 第二列 -->
+                          <h6 class="main-green-color">Breakfast & Instant Food</h6>
+                          <a class="dropdown-item" href="#">Breakfast Cereal</a>
+                          <a class="dropdown-item" href="#"> Noodles, Pasta & Soup</a>
+                          <a class="dropdown-item" href="#">Frozen Veg Snacks</a>
+                          <a class="dropdown-item" href="#"> Frozen Non-Veg Snacks</a>
+                          <a class="dropdown-item" href="#"> Vermicelli</a>
+                          <a class="dropdown-item" href="#"> Instant Mixes</a>
+                          <a class="dropdown-item" href="#"> Batter</a>
+                          <a class="dropdown-item" href="#"> Fruit and Juices</a>
+                        </li>
+                        <li class="mt-3">
+                          <!-- Mega menu 第三列 -->
+                          <h6 class="main-green-color">Cold Drinks & Juices</h6>
+                          <a class="dropdown-item" href="#">Soft Drinks</a>
+                          <a class="dropdown-item" href="#">Fruit Juices</a>
+                          <a class="dropdown-item" href="#">Coldpress</a>
+                          <a class="dropdown-item" href="#">Water & Ice Cubes</a>
+                          <a class="dropdown-item" href="#">Soda & Mixers</a>
+                          <a class="dropdown-item" href="#">Health Drinks</a>
+                          <a class="dropdown-item" href="#">Herbal Drinks</a>
+                          <a class="dropdown-item" href="#">Milk Drinks</a>
+                        </li>
+                        <li class="position-relative mt-3">
+                          <!--Mega menu 第四列 -->
+                          <img src="./img/banner/mega-menu-banner.jpeg" alt="" class="img-fluid">
+                          <div class="position-absolute mega-branner">
+                            <h5>
+                              Dont miss this <br> offer today.
+                            </h5>
+                            <a href="#" class="btn shop-now-btn ms-auto fs-7">Shop Now</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- Pages -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      Pages
+                    </button>
+                  </h2>
+                  <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fs-6-7">
+                      <a class="dropdown-item" href="#">Blog</a>
+                      <a class="dropdown-item" href="#">Blog Single</a>
+                      <a class="dropdown-item" href="#">Blog Category</a>
+                      <a class="dropdown-item" href="#">About us</a>
+                      <a class="dropdown-item" href="#">404 Error</a>
+                      <a class="dropdown-item" href="#">Contact</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Account -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      Account
+                    </button>
+                  </h2>
+                  <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fs-6-7">
+                      <a class="dropdown-item" href="#">Sign in</a>
+                      <a class="dropdown-item" href="#">Signup</a>
+                      <a class="dropdown-item" href="#">Forgot Password</a>
+                      <a class="dropdown-item" href="#">My Account</a>
+                      <a class="dropdown-item" href="#">Home 5<span class="badge light-blue ms-1">New</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Dashboard -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <a href="#">
+                      <button class="accordion-button collapsed hover-green dashboard" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false"
+                        aria-controls="collapseSeven">
+                        Dashboard
+                      </button>
+                    </a>
+                  </h2>
+                </div>
+                <!-- Docs -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed hover-green" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      Docs
+                    </button>
+                  </h2>
+                  <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fs-6-7">
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-file-text doc-icon main-green-color me-2"></i>
+                        <div class="doc-body">
+                          <h6 class="mb-0 fs-6-7">Documentations</h6>
+                          <p class="mb-0 fs-7">
+                            Browse the all documentation
+                          </p>
+                        </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-layers doc-icon main-green-color me-2"></i>
+                        <div class="doc-body">
+                          <h6 class="mb-0 fs-6-7">
+                            Changelog
+                            <span class="main-green-color">v1.2.0</span>
+                          </h6>
+                          <p class="mb-0 fs-7">
+                            See what's new
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
-
-
     <div class="top-nav">
       <div class="container d-none d-lg-flex align-items-center pb-3">
         <div class="dropdown">
@@ -163,351 +342,239 @@
             <li><a class="dropdown-item" href="#">Chicken, Meat & Fish</a></li>
           </ul>
         </div>
-        <a href="{{route('front.products')}}"  style=" white-space: nowrap;" class="ms-5" >
-            <button class="btn btn-success">Products</button>
-        </a>
+        <ul class="top-nav-menu d-flex p-0 m-0">
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Home</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Home 1</a></li>
+                <li><a class="dropdown-item" href="#">Home 2</a></li>
+                <li><a class="dropdown-item" href="#">Home 3</a></li>
+                <li><a class="dropdown-item" href="#">Home 4</a></li>
+                <li><a class="dropdown-item" href="#">Home 5<span class="badge light-blue ms-1">New</span>
+                  </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Shop</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Shop Grid - Filter</a></li>
+                <li><a class="dropdown-item" href="#">Shop Grid - 3 column</a></li>
+                <li><a class="dropdown-item" href="#">Shop List - Filter</a></li>
+                <li><a class="dropdown-item" href="#">Shop - Filter</a></li>
+                <li><a class="dropdown-item" href="#">Shop Single</a></li>
+                <li><a class="dropdown-item" href="#">Shop Single v2</a></li>
+                <li><a class="dropdown-item" href="#">Shop Wishlist</a></li>
+                <li><a class="dropdown-item" href="#">Shop Cart</a></li>
+                <li><a class="dropdown-item" href="#">Shop Checkout</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Stores</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Store List</a></li>
+                <li><a class="dropdown-item" href="#">Store Grid</a></li>
+                <li><a class="dropdown-item" href="#">Store Single</a></li>
+              </ul>
+            </div>
+          </li>
+          <!-- mega menu -->
+          <li class="top-nav-item mega-menu">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Mega menu</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <div class="dropdown-menu">
+                <div>
+                  <div class="row p-2 p-lg-3">
+                    <!-- Mega-menu第一列 -->
+                    <div class="col col-lg-3">
+                      <h6 class="main-green-color">Dairy, Bread & Eggs</h6>
+                      <a class="dropdown-item" href="#">Butter</a>
+                      <a class="dropdown-item" href="#">Milk Drinks</a>
+                      <a class="dropdown-item" href="#">Curd & Yogurt</a>
+                      <a class="dropdown-item" href="#">Eggs</a>
+                      <a class="dropdown-item" href="#">Buns & Bakery</a>
+                      <a class="dropdown-item" href="#">Cheese</a>
+                      <a class="dropdown-item" href="#">Condensed Milk</a>
+                      <a class="dropdown-item" href="#">Dairy Products</a>
+                    </div>
+                    <!-- Mega-menu第二列 -->
+                    <div class="col col-lg-3">
+                      <h6 class="main-green-color">Breakfast & Instant Food</h6>
+                      <a class="dropdown-item" href="#">Breakfast Cereal</a>
+                      <a class="dropdown-item" href="#"> Noodles, Pasta & Soup</a>
+                      <a class="dropdown-item" href="#">Frozen Veg Snacks</a>
+                      <a class="dropdown-item" href="#"> Frozen Non-Veg Snacks</a>
+                      <a class="dropdown-item" href="#"> Vermicelli</a>
+                      <a class="dropdown-item" href="#"> Instant Mixes</a>
+                      <a class="dropdown-item" href="#"> Batter</a>
+                      <a class="dropdown-item" href="#"> Fruit and Juices</a>
+                    </div>
+                    <!-- Mega-menu第三列 -->
+                    <div class="col col-lg-3">
+                      <h6 class="main-green-color">Cold Drinks & Juices</h6>
+                      <a class="dropdown-item" href="#">Soft Drinks</a>
+                      <a class="dropdown-item" href="#">Fruit Juices</a>
+                      <a class="dropdown-item" href="#">Coldpress</a>
+                      <a class="dropdown-item" href="#">Water & Ice Cubes</a>
+                      <a class="dropdown-item" href="#">Soda & Mixers</a>
+                      <a class="dropdown-item" href="#">Health Drinks</a>
+                      <a class="dropdown-item" href="#">Herbal Drinks</a>
+                      <a class="dropdown-item" href="#">Milk Drinks</a>
+                    </div>
+                    <!-- Mega-menu第四列 -->
+                    <div class="col col-lg-3 position-relative">
+                      <img src="./img/banner/mega-menu-banner.jpeg" alt="" class="img-fluid">
+                      <div class="position-absolute mega-branner">
+                        <h5>
+                          Dont miss this <br> offer today.
+                        </h5>
+                        <a href="#" class="btn shop-now-btn ms-auto fs-7">Shop Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Pages</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Blog</a></li>
+                <li><a class="dropdown-item" href="#">Blog Single</a></li>
+                <li><a class="dropdown-item" href="#">Blog Category</a></li>
+                <li><a class="dropdown-item" href="#">About us</a></li>
+                <li><a class="dropdown-item" href="#">404 Error</a></li>
+                <li><a class="dropdown-item" href="#">Contact</a></li>
+              </ul>
+          </li>
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Account</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Sign in</a></li>
+                <li><a class="dropdown-item" href="#">Signup</a></li>
+                <li><a class="dropdown-item" href="#">Forgot Password</a></li>
+                <li><a class="dropdown-item" href="#">My Account</a></li>
+                <li><a class="dropdown-item" href="#">Home 5<span class="badge light-blue ms-1">New</span>
+                  </a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Dashboard</span>
+              </button>
+            </div>
+          </li>
+          <li class="top-nav-item">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle hover-green fs-6-7" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <span>Docs</span>
+                <i class="bi bi-chevron-down nav-down-i"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item d-flex align-items-center" href="#">
+                    <i class="bi bi-file-text doc-icon main-green-color me-2"></i>
+                    <div class="doc-body">
+                      <h6 class="mb-0 fs-6-7">Documentations</h6>
+                      <p class="mb-0 fs-7">
+                        Browse the all documentation
+                      </p>
+                    </div>
+                  </a></li>
+                <li><a class="dropdown-item d-flex align-items-center" href="#">
+                    <i class="bi bi-layers doc-icon main-green-color me-2"></i>
+                    <div class="doc-body">
+                      <h6 class="mb-0 fs-6-7">
+                        Changelog
+                        <span class="main-green-color">v1.2.0</span>
+                      </h6>
+                      <p class="mb-0 fs-7">
+                        See what's new
+                      </p>
+                    </div>
+                  </a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   </header>
-
-
-
-
-
-
-  <main>
-    <section class="big-banner">
-      <div class="container">
-        <!-- Bib Swiper -->
-        <div class="swiper bigSwiper">
-          <div class="swiper-wrapper">
-            <!-- big-slide-1 -->
-            <div class="swiper-slide big-slide big-slide-1">
-              <div class="big-slide-content d-flex flex-column align-items-start col-xxl-5 col-md-7">
-                <span class="badge text-bg-warning mb-2">Opening Sale Discount 50%</span>
-                <h2 class="slide-h2 text-start">SuperMarket For Fresh Grocery</h2>
-                <p class="text-start slide-p">Introduced a new model for online grocery shopping
-                  and convenient home delivery.</p>
-                <button type="button" class="btn btn-dark dropdown-toggle all-departments-btn  fs-6-7"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  <span>Shop Now</span>
-                  <i class="bi bi-arrow-right-short fs-6"></i>
-                </button>
-              </div>
-            </div>
-            <!-- big-slide-2 -->
-            <div class="swiper-slide big-slide big-slide-2">
-              <div class="big-slide-content d-flex flex-column align-items-start col-xxl-5 col-md-7">
-                <span class="badge text-bg-warning mb-2">Free Shipping - orders over span$100</span>
-                <h2 class="slide-h2 text-start">Free Shipping on <br> orders over <span
-                    class="main-green-color">$100</span></h2>
-                <p class="text-start slide-p">Free Shipping to First-Time Customers Only, After promotions and discounts
-                  are applied.
-                </p>
-                <button type="button" class="btn btn-dark dropdown-toggle all-departments-btn  fs-6-7"
-                  data-bs-toggle="dropdown" aria-expanded="false">
-                  <span>Shop Now</span>
-                  <i class="bi bi-arrow-right-short fs-6"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-pagination m-0"></div>
+  <div class="container">
+    <form action="{{route('user.info.update')}}"method="post" class="d-flex flex-column row-gap-5">
+        @csrf
+        <h1>帳號資訊</h1>
+        <div>帳號：{{$user->email}}</div>
+        <div>姓名：
+            <span class="username">
+                {{$user->name}}
+            </span>
+            <input type="text" name="name" value="{{$user->name}}" class="d-none">
         </div>
-      </div>
-    </section>
+        <div class="d-none column-gap-3">
+            <button type="submit" class="btn btn-primary" >確認送出</button>
+            <button type="button" class="btn btn-primary">取消</button>
+        </div>
+        <div class="d-flex">
+            <button type="button" class="btn btn-primary" onclick="editmode()">編輯</button>
+        </div>
+        @if ($errors->first())
+          <input id="error" type="hidden"   
+        @endif
 
-    <section class="small-banner mt-5">
-      <div class="container text-start">
-        <div class="row two-card row-cols-1 px-3 px-lg-0">
-          <div class="col food-banner food-left-banner img-fluid me-md-2 mb-4 mb-md-0">
-            <h3>Fruits & Vegetables</h3>
-            <p>Get Upto <span class="fw-bold">30%</span> Off</p>
-            <button type="button" class="btn btn-dark dropdown-toggle all-departments-btn  fs-6-7 buy-food-btn"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <span>Shop Now</span>
-            </button>
-          </div>
-          <div class="col food-banner food-right-banner img-fluid ms-md-2">
-            <h3>Freshly Baked Buns</h3>
-            <p>Get Upto <span class="fw-bold">25%</span> Off</p>
-            <button type="button" class="btn btn-dark dropdown-toggle all-departments-btn  fs-6-7 buy-food-btn"
-              data-bs-toggle="dropdown" aria-expanded="false">
-              <span>Shop Now</span>
-            </button>
-          </div>
 
-        </div>
-      </div>
-    </section>
-    <section class="popluar-product">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-12">
-            <h3>Popular Products</h3>
-          </div>
-        </div>
-        <div class="row row-cols-xl-5 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-2 row-gap-1">
-          <!-- 1 -->
-          <div class="col">
-            <div class="card mb-3 card-product position-relative">
-              <div class="card-body d-flex flex-column align-items-center justify-content-between">
-                <div>
-                  <span class="badge text-bg-danger me-auto">Sale</span>
-                  <a href="#"><img src="./img/product/product-img-1.jpg" alt="" class="img-fluid mb-2-3"></a>
 
-                  <a href="#" class="me-auto mb-2">
-                    <p class="card-text text-body-tertiary fs-7">Snack &
-                      Munchies</p>
-                  </a>
-                  <a href="#" class="me-auto">
-                    <h5 class="card-title fs-6">Haldiram's
-                      Sev Bhujia</h5>
-                  </a>
-                  <div class="me-auto mb-3">
-                    <span class="star-color">
-                      <i class="bi bi-star-fill "></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-fill"></i>
-                      <i class="bi bi-star-half"></i>
-                    </span>
-                    <span class="fs-7 text-body-tertiary">4.5(149)</span>
-                  </div>
-                </div>
-                <div
-                  class="card-product-action position-absolute top-50 d-flex align-items-center justify-content-center gap-1 w-100">
-                  <a href="#" class="btn-action action-link" data-action="Quick View">
-                    <i class="bi bi-eye"></i>
-                  </a>
-                  <a href="#" class="btn-action action-link" data-action="Wishlish">
-                    <i class="bi bi-heart"></i>
-                  </a>
-                  <a href="#" class="btn-action action-link" data-action="Compare">
-                    <i class="bi bi-arrow-left-right"></i>
-                  </a>
-                </div>
-                <div class="d-flex justify-content-between w-100">
-                  <div>
-                    <span class="fs-6">$18</span>
-                    <span class="fs-6 text-body-tertiary"><del>$24</del></span>
-                  </div>
-                  <a href="#" class="btn btn-primary ms-auto btn-add"><i class="bi bi-plus-lg me-1"></i>Add</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="daily-best-sells mb-5 ">
-      <div class="container">
-        <h4 class="text-black mb-3">Daily Best Sells</h4>
-        <div class="w-self-1 ">
-          <div class="row w-self-2 no-wrap">
-            <div class="col-3 col-lg-3 position-relative overflow-hidden rounded-4">
-              <img src="./img/daily best sells/banner-deal.jpg" class="border h-470 rounded-4 " alt="...">
-              <div class="position-absolute top-0 text-white fs-4 fw-bold p-4">100% Organic Coffee Beans. <div
-                  class="fs-14-self pe-4 d-inline-block"> Get the best deal before close.</div>
-              </div>
-              <button type="button" class="btn btn-success shop position-absolute btn-self">Shop Now →</button>
-            </div>
-            <!-- 第一個商品 -->
-            <div class="col-3 col-lg-3 sells-product">
-              <div class="card mb-3 card-product position-relative">
-                <div class="card-body d-flex flex-column align-items-center justify-content-start">
-                  <div>
-                    <a href="#"><img src="./img/daily best sells/product-img-11.jpg" alt="" class="img-fluid mb-2-3 img-self"></a>
+    </form>
 
-                    <a href="#" class="me-auto mb-2">
-                      <p class="card-text text-body-tertiary fs-7 ">Tea, Coffee & Drinks</p>
-                    </a>
-                    <a href="#" class="me-auto">
-                      <h5 class="card-title fs-6">Roast Ground Coffee</h5>
-                    </a>
-                    <div class=" mb-1 d-flex justify-content-between">
-                      <div>
-                        <span class="fs-6">$13</span>
-                        <span class="fs-6 text-body-tertiary"><del>$18</del></span>
-                      </div>
-                      <div>
-                        <span class="star-color">
-                          <i class="bi bi-star-fill "></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i>
-                        </span>
-                        <span class="fs-7 text-body-tertiary">4.5</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="card-product-action position-absolute top-self d-flex align-items-center justify-content-center gap-1 w-100">
-                    <a href="#" class="btn-action action-link" data-action="Quick View">
-                      <i class="bi bi-eye"></i>
-                    </a>
-                    <a href="#" class="btn-action action-link" data-action="Wishlish">
-                      <i class="bi bi-heart"></i>
-                    </a>
-                    <a href="#" class="btn-action action-link" data-action="Compare">
-                      <i class="bi bi-arrow-left-right"></i>
-                    </a>
-                  </div>
-                  <div class="d-flex justify-content-center w-100">
-                    <a href="#" class="btn btn-primary w-100 btn-add"><i class="bi bi-plus-lg me-1"></i>Add to cart</a>
-                  </div>
-                  <div class="row  mt-3 w-100 justify-content-center  mx-auto g-1 flex-wrap">
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3 "><div class="card px-2 py-2 mx-auto size-60-60 text-center">1868<br>Days</div></div>
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">03<br>Hours</div></div>
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">43<br>Mins</div></div>
-                    <div class="col col-lg-6 col-xl-12  col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">60<br>Secs</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 第二個商品 -->
-            <div class="col-3 col-lg-3 sells-product">
-              <div class="card mb-3 card-product position-relative">
-                <div class="card-body d-flex flex-column align-items-center justify-content-start">
-                  <div>
-                    <a href="#"><img src="./img/daily best sells/product-img-12.jpg" alt="" class="img-fluid mb-2-3 img-self"></a>
+    {{-- 法一 --}}
+    @foreach ($errors->all() as $item)
+    {{$item}}
+    @endforeach
+    {{-- @dd($errors) --}}
 
-                    <a href="#" class="me-auto mb-2">
-                      <p class="card-text text-body-tertiary fs-7 ">Fruits & Vegetables</p>
-                    </a>
-                    <a href="#" class="me-auto">
-                      <h5 class="card-title fs-6">Crushed Tomatoes</h5>
-                    </a>
-                    <div class=" mb-1 d-flex justify-content-between">
-                      <div>
-                        <span class="fs-6">$13</span>
-                        <span class="fs-6 text-body-tertiary"><del>$18</del></span>
-                      </div>
-                      <div>
-                        <span class="star-color">
-                          <i class="bi bi-star-fill "></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i>
-                        </span>
-                        <span class="fs-7 text-body-tertiary">4.5</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="card-product-action position-absolute top-self d-flex align-items-center justify-content-center gap-1 w-100">
-                    <a href="#" class="btn-action action-link" data-action="Quick View">
-                      <i class="bi bi-eye"></i>
-                    </a>
-                    <a href="#" class="btn-action action-link" data-action="Wishlish">
-                      <i class="bi bi-heart"></i>
-                    </a>
-                    <a href="#" class="btn-action action-link" data-action="Compare">
-                      <i class="bi bi-arrow-left-right"></i>
-                    </a>
-                  </div>
-                  <div class="d-flex justify-content-center w-100">
-                    <a href="#" class="btn btn-primary w-100 btn-add"><i class="bi bi-plus-lg me-1"></i>Add to cart</a>
-                  </div>
-                  <div class="row  mt-3 w-100 justify-content-center  mx-auto g-1 flex-wrap">
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3 "><div class="card px-2 py-2 mx-auto size-60-60 text-center">1928<br>Days</div></div>
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">03<br>Hours</div></div>
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">43<br>Mins</div></div>
-                    <div class="col col-lg-6 col-xl-12  col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">60<br>Secs</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 第三個商品 -->
-            <div class="col-3 col-lg-3 sells-product">
-              <div class="card mb-3 card-product position-relative">
-                <div class="card-body d-flex flex-column align-items-center justify-content-start">
-                  <div>
-                    <a href="#"><img src="./img/daily best sells/product-img-13.jpg" alt="" class="img-fluid mb-2-3 img-self"></a>
+    {{-- 法二 --}}
+    {{-- @error('nameError')
+        字數過多
+    @enderror --}}
 
-                    <a href="#" class="me-auto mb-2">
-                      <p class="card-text text-body-tertiary fs-7 ">Fruits & Vegetables</p>
-                    </a>
-                    <a href="#" class="me-auto">
-                      <h5 class="card-title fs-6">Golden Pineapple</h5>
-                    </a>
-                    <div class=" mb-1 d-flex justify-content-between">
-                      <div>
-                        <span class="fs-6">$13</span>
-                        <span class="fs-6 text-body-tertiary"><del>$18</del></span>
-                      </div>
-                      <div>
-                        <span class="star-color">
-                          <i class="bi bi-star-fill "></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-fill"></i>
-                          <i class="bi bi-star-half"></i>
-                        </span>
-                        <span class="fs-7 text-body-tertiary">4.5</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="card-product-action position-absolute top-self d-flex align-items-center justify-content-center gap-1 w-100">
-                    <a href="#" class="btn-action action-link" data-action="Quick View">
-                      <i class="bi bi-eye"></i>
-                    </a>
-                    <a href="#" class="btn-action action-link" data-action="Wishlish">
-                      <i class="bi bi-heart"></i>
-                    </a>
-                    <a href="#" class="btn-action action-link" data-action="Compare">
-                      <i class="bi bi-arrow-left-right"></i>
-                    </a>
-                  </div>
-                  <div class="d-flex justify-content-center w-100">
-                    <a href="#" class="btn btn-primary w-100 btn-add"><i class="bi bi-plus-lg me-1"></i>Add to cart</a>
-                  </div>
-                  <div class="row  mt-3 w-100 justify-content-center  mx-auto g-1 flex-wrap">
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3 "><div class="card px-2 py-2 mx-auto size-60-60 text-center">1900<br>Days</div></div>
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">03<br>Hours</div></div>
-                    <div class="col col-lg-6 col-xl-4 col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">43<br>Mins</div></div>
-                    <div class="col col-lg-6 col-xl-12  col-xxl-3"><div class="card px-2 py-2 mx-auto size-60-60 text-center">60<br>Secs</div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- footer上四張卡 -->
-    <section class="copywriting container py-5 mb-5">
-      <div class="row w-100 ">
-        <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
-          <img src="./img/copywriting/clock.svg" class="mb-4">
-          <h6>10 minute grocery now</h6>
-          <span>Get your order delivered to your doorstep at the
-            earliest from FreshCart pickup stores near you.</span>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
-          <img src="./img/copywriting/gift.svg" class="mb-4">
-          <h6>Best Prices & Offers</h6>
-          <span>Cheaper prices than your local supermarket, great
-            cashback offers to top it off. Get best pricess & offers.</span>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
-          <img src="./img/copywriting/package.svg" class="mb-4">
-          <h6>Wide Assortment</h6>
-          <span>Choose from 5000+ products across food, personal care, household,
-            bakery, veg and non-veg & other categories.</span>
-        </div>
-        <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
-          <img src="./img/copywriting/refresh-cw.svg" class="mb-4">
-          <h6>Easy Returns</h6>
-          <span> Not satisfied with a product? Return it at the doorstep & get
-            a refund within hours. No questions asked policy.</span>
-        </div>
-      </div>
-    </section>˙
-  </main>
+
+
+
+
+  </div>
   <footer class="mt-5  container-fluid w-100 bg-light-blue pt-4 pb-5">
     <div class="bottom-nav container d-flex justify-content-center pt-5 mb-3">
       <div class="row w-100 border-4">
@@ -1071,8 +1138,46 @@
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <!-- Local Swiper JS -->
-  <script src="./js/swiper.js"></script>
+  <script src="{{asset('js/swiper.js')}}"></script>
+  {{-- sweetalert --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    function editmode(){
+        const nameInput =document.querySelector('input[name="name"]');
+        console.log(nameInput);
+        const userName =document.querySelector('.username');
+        const btns =document.querySelector('.d-none.column-gap-3');
+        userName.classList.add('d-none');
+        nameInput.classList.remove('d-none');
+        btns.classList.remove('d-none');
+        btns.classList.add('d-flex');
+        console.log(nameInput);
 
+
+    }
+  </script>
+
+
+{{-- 法三 --}}
+    {{-- @error('nameError')
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: '{{$errors->first()}}',
+
+      })
+      </script>
+    @enderror --}}
+    @if($errors->first())
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: '{{$errors->first()}}',
+
+      })
+      </script>
+    @endif
 </body>
 
 </html>
+

@@ -356,6 +356,10 @@
       background-color: rgb(240, 243, 242) ;
     }
 
+    a{
+        text-decoration: none;
+    }
+
   </style>
 
 
@@ -425,69 +429,50 @@
       </div>
       <div class="  left-menu l-menu-height  pt-1 d-xl-flex  overflow-y-scroll ">
         <div class="accordion accordion-flush text-black-50" id="accordionFlushExample">
-          <h2 class="accordion-header ">
+         <a  href="{{ route('backend.index') }}"
+                @if (Route::currentRouteName() == 'backend.index')
+                     class="nav-link active"
+                @else
+                     class="nav-link"
+                 @endif>
+          <h2 class="accordion-header active">
             <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center  "
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
               aria-controls="flush-collapseOne">
               <i class="fa-regular fa-house-chimney fs-16-self"></i><span class="pt-1 ms-4">Dashboard</span>
             </button>
           </h2>
+        </a>
+
           <div class="fs-6 pt-4 pb-2">
             <span class="ms-4 fs-14-self text-light-emphasis">Store Managements</span>
           </div>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-light fa-cart-shopping fs-16-self fw-normal"></i><span class="pt-1 ms-4">Products</span>
-            </button>
-          </h2>
+          <a  href="{{ route('namecartProductList') }}"
+            @if (Route::currentRouteName() == 'namecartProductList')
+                class="nav-link active"
+            @else
+                class="nav-link"
+            @endif>
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
+                type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                aria-controls="flush-collapseTwo">
+                <i class="fa-light fa-cart-shopping fs-16-self fw-normal"></i><span class="pt-1 ms-4">Products</span>
+                </button>
+            </h2>
+          </a>
           <h2 class="accordion-header">
             <button class="accordion-button collapsed  text-light-emphasis rounded-3 d-flex align-items-center"
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
               aria-controls="flush-collapseTwo">
-              <i class="fa-solid fa-list fs-16-self"></i><span class="pt-1 ms-4 ">Categories</span>
-            </button>
-          </h2>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-                type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
-                aria-controls="flush-collapseThree">
-                <i class="fa-regular fa-bag-shopping fs-19-self"></i><span class="pt-1 ms-4">Oders</span><i
-                  class="turn"></i>
-              </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body rounded py-2 text-light-emphasis" tabindex="1">
-                <li>List</li>
-              </div>
-              <div class="accordion-body rounded py-2 text-light-emphasis" tabindex="1">
-                <li>Single</li>
-              </div>
-            </div>
-          </div>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-shop fs-16-self"></i><span class="pt-1 ms-4">Sellers/Vendors</span>
-              <!-- <i class="bi bi-shop"></i><span class="pt-1 ms-4 fs-14-self">Sellers/Vendors</span> -->
+              <i class="fa-solid fa-list fs-16-self"></i><span class="pt-1 ms-4 ">Types</span>
             </button>
           </h2>
           <h2 class="accordion-header">
             <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
               aria-controls="flush-collapseTwo">
-              <i class="fa-light fa-user-group fa-flip-horizontal fw-normal"></i><span
-                class="pt-1 ms-4">Customers</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-star fs-16-self"></i><span class="pt-1 ms-4 ">Reviews</span>
+              <i class="fa-regular fa-star fs-16-self"></i><span class="pt-1 ms-4 ">Oders</span>
             </button>
           </h2>
           <!-- 第一個COMMING SOON -->
@@ -503,84 +488,20 @@
             <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
               aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-calculator fs-16-self"></i><span class="pt-1 ms-4 ">Blog</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-image fs-16-self"></i><span class="pt-1 ms-4 ">Media</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
               <i class="fa-regular fa-gear fs-16-self"></i><span class="pt-1 ms-4 ">Store Settings</span>
             </button>
           </h2>
           <!-- 第二個COMMING SOON -->
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <span class="pt-1 fs-14-self ">Support</span><span class="ms-5 fs-14-self bg-blue px-1 rounded">comming
-                soon</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-solid fa-headphones fs-16-self"></i><span class="pt-1 ms-4 ">
-                Support Ticket</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-circle-question fs-16-self"></i><span class="pt-1 ms-4 ">Help Center</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-solid fa-infinity fs-16-self"></i><span class="pt-1 ms-4 ">How FreshCart Works</span>
-            </button>
-          </h2>
+
           <!-- 第三的comming soon -->
 
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <span class="pt-1 fs-14-self ">Our Apps</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-brands fa-apple fs-16-self"></i><span class="pt-1 ms-4 ">
-                Apple Store</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex  align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-brands fa-google-play fs-16-self"></i><span class="pt-1 ms-4 ">Google Play Store</span>
-            </button>
-          </h2>
         </div>
       </div>
 
     </div>
 
     <!-- 左邊欄位 -->
+    {{-- @dd(Route::currentRouteName()) --}}
     <div class="left-menu l-height pe-4 d-none d-xl-block">
       <div class="left-menu ps-4 logo d-flex align-items-center"><svg width="160" height="31" viewBox="0 0 160 31" fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -638,89 +559,58 @@
       </div>
       <div class="left-menu l-menu-height d-none pt-1 d-xl-flex  overflow-y-scroll ">
         <div class="accordion accordion-flush text-black-50" id="accordionFlushExample">
-          <h2 class="accordion-header ">
+        <a href="{{ route('backend.index') }}"
+            @if (Route::currentRouteName() == 'backend.index')
+                class="nav-link active"
+            @else
+                class="nav-link"
+             @endif>
+          <h2 class="accordion-header active " >
             <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center  "
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false"
               aria-controls="flush-collapseOne">
               <i class="fa-regular fa-house-chimney fs-16-self"></i><span class="pt-1 ms-4">Dashboard</span>
             </button>
           </h2>
+        </a>
           <div class="fs-6 pt-4 pb-2">
             <span class="ms-4 fs-14-self text-light-emphasis">Store Managements</span>
           </div>
+          <a  href="{{ route('namecartProductList') }}"
+                @if (Route::currentRouteName() == 'namecartProductList')
+                    class="nav-link active"
+                @else
+                    class="nav-link"
+                @endif>
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
+                        type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                        aria-controls="flush-collapseTwo">
+                        <i class="fa-light fa-cart-shopping fs-16-self fw-normal"></i><span class="pt-1 ms-4">Products</span>
+                        </button>
+                    </h2>
+          </a>
+          <a  href="{{ route('type.index') }}"
+                @if (Route::currentRouteName() == 'type.index')
+                    class="nav-link active"
+                @else
+                    class="nav-link"
+                @endif>
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed  text-light-emphasis rounded-3 d-flex align-items-center"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                    aria-controls="flush-collapseTwo">
+                    <i class="fa-solid fa-list fs-16-self"></i><span class="pt-1 ms-4 ">Types</span>
+                    </button>
+                </h2>
+          </a>
           <h2 class="accordion-header">
             <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
               aria-controls="flush-collapseTwo">
-              <i class="fa-light fa-cart-shopping fs-16-self fw-normal"></i><span class="pt-1 ms-4">Products</span>
+              <i class="fa-regular fa-star fs-16-self"></i><span class="pt-1 ms-4 ">Oders</span>
             </button>
           </h2>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed  text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-solid fa-list fs-16-self"></i><span class="pt-1 ms-4 ">Categories</span>
-            </button>
-          </h2>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-                type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false"
-                aria-controls="flush-collapseThree">
-                <i class="fa-regular fa-bag-shopping fs-19-self"></i><span class="pt-1 ms-4">Oders</span><i
-                  class="turn"></i>
-              </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body rounded py-2 text-light-emphasis" tabindex="1">
-                <li>List</li>
-              </div>
-              <div class="accordion-body rounded py-2 text-light-emphasis" tabindex="1">
-                <li>Single</li>
-              </div>
-            </div>
-          </div>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-shop fs-16-self"></i><span class="pt-1 ms-4">Sellers/Vendors</span>
-              <!-- <i class="bi bi-shop"></i><span class="pt-1 ms-4 fs-14-self">Sellers/Vendors</span> -->
-            </button>
-          </h2>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-light fa-user-group fa-flip-horizontal fw-normal"></i><span
-                class="pt-1 ms-4">Customers</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-star fs-16-self"></i><span class="pt-1 ms-4 ">Reviews</span>
-            </button>
-          </h2>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed text-light-emphasis rounded-3 d-flex align-items-center"
-                type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false"
-                aria-controls="flush-collapseFour">
-                <i class="fa-solid fa-turn-down fa-flip-horizontal fs-16-self"></i></i><span class="pt-1 ms-4 ">Menu
-                  Level</span><i class="turn"></i>
-              </button>
-            </h2>
-            <div id="flush-collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body rounded py-2 text-light-emphasis" tabindex="1">
-                <li>Two Level</li>
-              </div>
-              <div class="accordion-body rounded py-2 text-light-emphasis" tabindex="1">
-                <li>Three Level</li>
-              </div>
-            </div>
-          </div>
           <!-- 第一個COMMING SOON -->
           <h2 class="accordion-header pe-none">
             <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
@@ -734,78 +624,14 @@
             <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
               type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
               aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-calculator fs-16-self"></i><span class="pt-1 ms-4 ">Blog</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-image fs-16-self"></i><span class="pt-1 ms-4 ">Media</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
               <i class="fa-regular fa-gear fs-16-self"></i><span class="pt-1 ms-4 ">Store Settings</span>
             </button>
           </h2>
           <!-- 第二個COMMING SOON -->
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <span class="pt-1 fs-14-self ">Support</span><span class="ms-5 fs-14-self bg-blue px-1 rounded">comming
-                soon</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-solid fa-headphones fs-16-self"></i><span class="pt-1 ms-4 ">
-                Support Ticket</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-regular fa-circle-question fs-16-self"></i><span class="pt-1 ms-4 ">Help Center</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-solid fa-infinity fs-16-self"></i><span class="pt-1 ms-4 ">How FreshCart Works</span>
-            </button>
-          </h2>
+
           <!-- 第三的comming soon -->
 
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <span class="pt-1 fs-14-self ">Our Apps</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-brands fa-apple fs-16-self"></i><span class="pt-1 ms-4 ">
-                Apple Store</span>
-            </button>
-          </h2>
-          <h2 class="accordion-header pe-none">
-            <button class="accordion-button collapsed rounded-3 d-flex  align-items-center text-body-tertiary"
-              type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false"
-              aria-controls="flush-collapseTwo">
-              <i class="fa-brands fa-google-play fs-16-self"></i><span class="pt-1 ms-4 ">Google Play Store</span>
-            </button>
-          </h2>
+
         </div>
       </div>
 
@@ -828,8 +654,29 @@
         </div>
         <!-- 導航欄右側  -->
         <div class="nav-right col-6 h-75 p-0  d-flex justify-content-end align-items-center ">
+            @auth
+                <div style="white-space: nowrap;" class="d-flex align-items-center me-3">
+                    hi,{{Auth::user()->name}}
+                </div>
+                <div>
+                    <form method="POST" action="{{route('logout')}}">
+                        @csrf
+                        <button class="btn btn-success me-3" style=" white-space: nowrap;">登出</button>
+                    </form>
+                </div>
+            @endauth
+
+            @guest
+                <div>
+                    <a href="{{route('login')}}"  style=" white-space: nowrap;" >
+                        <button class="btn btn-success">hi,訪客,點此登入</button>
+                    </a>
+                    {{-- <br> --}}
+                    {{-- <a href="{{route('nameTest')}}" style=" white-space: nowrap;">點我進入測試頁</a> --}}
+                </div>
+            @endguest
           <div class="alarm "><i class="fa-regular fa-bell fw-light"></i></div>
-          <div class="login ms-4 position-relative"><img class="login" src="./photo/login.jpg">
+          <div class="login ms-4 position-relative"><img class="login" src="{{asset('./photo/login.jpg')}}">
             <div class="login-block position-absolute appear">
               <div class=" p-3 border-bottom">
                 FreshCart Admin<br><span  class="text-black-50"> admindemo@email.com</span>
@@ -847,9 +694,9 @@
       </div>
 
       <!-- 右邊主欄 -->
-      <div class="right row w-100  m-0 px-0 pt-3 justify-content-center align-content-start">
+      <div class="right row w-100  m-0 px-0  justify-content-center align-content-start">
 
-        @yield('main');
+        @yield('main')
 
 
       </div>

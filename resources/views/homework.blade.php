@@ -1,4 +1,4 @@
-@extends('Layout.hwTemplate')
+@extends('templates.hwTemplate')
 @section('main')
 
 @foreach($responses as $key => $res)

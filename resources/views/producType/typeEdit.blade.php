@@ -1,4 +1,4 @@
-@extends('Layout.template')
+@extends('templates.template')
 @section('css')
 @endsection
 
