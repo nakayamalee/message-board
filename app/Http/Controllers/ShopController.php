@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\Models\Cart;
-use  App\Models\OrderForm;
-use  App\Models\ProductOrder;
+use App\Models\Cart;
+use App\Models\OrderForm;
+use App\Models\ProductOrder;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderCreated;
 
 class ShopController extends Controller
 {
@@ -58,16 +60,60 @@ class ShopController extends Controller
         $request->validate([
             'pay' => 'required|numeric',
         ]);
-        OrderForm::create([
+
+        // 找購物車屬於使用者的資料
+        $itembuys = Cart::where('user_id',$request->user()->id)->get();
+
+        $todayOrderCount = OrderForm::whereDate('created_at', today())->get()->count();
+
+        $string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+        $shuffle = str_shuffle($string);
+
+        // 建立主表(order)
+        $form = OrderForm::create([
+            'order_id' => 'HW' . date("Ymd") . str_pad($todayOrderCount, 4, '0', STR_PAD_LEFT) . substr($shuffle, 0, 3),
             'user_id' =>$request->user()->id,
             'name' => session()->get('name'),
             'address' => session()->get('address'),
             'date' => session()->get('date'),
             'phone' => session()->get('phone'),
-            'menu' => session()->get('menu'),
-            'total' => session()->get('total'),
+            'menu' => session()->get('menu') ?? '',
             'pay' => $request->pay,
         ]);
+        
+        // 預設總價為0
+        $total = 0;
+
+        // 購物車有幾筆就執行幾次
+        foreach($itembuys as $value){
+            $total += $value->product_withTrashed->price * $value->qty;
+
+            ProductOrder::create([
+                'form_id' => $form->id,
+                'qty' => $value->qty,
+                'price' => $value->product->price,
+                'name' => $value->product->name,
+                'image' => $value->product->image,
+                'desc' => $value->product->desc,
+            ]);
+
+            $value->delete();
+        };
+
+        $form->update([
+            'total' => $total,
+        ]);
+
+        session()->forget(['name', 'address', 'date', 'phone', 'menu']);
+
+        $data = [
+            'name' => $request->user()->name,
+            'order_id' => $form->order_id,
+            'total' => $total,
+        ];
+
+        Mail::to($request->user()->email)->send(new OrderCreated($data));
 
         return redirect(route('shopThxGet'));
     }
@@ -155,9 +201,6 @@ class ShopController extends Controller
             $total += $value->product_withTrashed->price * $value->qty;
         };
 
-        session()->forget('total');
-        session()->put('total',$total);
-
         return view('shopprocess.orderdetails', compact('itembuys','total'));
     }
 
@@ -179,34 +222,34 @@ class ShopController extends Controller
     }
     public function ordercheck(Request $request)
     {
-        $orderResult = OrderForm::where('user_id',$request->user()->id)->get();
-        $latestOrder = OrderForm::orderBy('created_at', 'desc')->first();
-        $latestOrder_id = $latestOrder->id;
+        // $orderResult = OrderForm::where('user_id',$request->user()->id)->get();
+        // $latestOrder = OrderForm::orderBy('created_at', 'desc')->first();
+        // $latestOrder_id = $latestOrder->id;
 
-        $itembuys = Cart::where('user_id',$request->user()->id)->get();
-        foreach ($itembuys as $itembuy){
-            ProductOrder::create([
-                'form_id' =>$latestOrder_id,
-                'product_id' =>$itembuy->product_id,
-                'qty' =>$itembuy->qty,
-                'price' =>$itembuy->product_withTrashed->price,
-            ]);
-        }
+        // $itembuys = Cart::where('user_id',$request->user()->id)->get();
+        // foreach ($itembuys as $itembuy){
+        //     ProductOrder::create([
+        //         'form_id' =>$latestOrder_id,
+        //         'product_id' =>$itembuy->product_id,
+        //         'qty' =>$itembuy->qty,
+        //         'price' =>$itembuy->product_withTrashed->price,
+        //     ]);
+        // }
 
-        $request->session()->forget('name');
-        $request->session()->forget('address');
-        $request->session()->forget('date');
-        $request->session()->forget('phone');
-        $request->session()->forget('menu');
-        $request->session()->forget('total');
-        $request->session()->forget('pay');
-
-
+        // $request->session()->forget('name');
+        // $request->session()->forget('address');
+        // $request->session()->forget('date');
+        // $request->session()->forget('phone');
+        // $request->session()->forget('menu');
+        // $request->session()->forget('total');
+        // $request->session()->forget('pay');
 
 
 
 
-        return view('shopprocess.ordercheck',compact('orderResult','itembuys'));
+
+
+        // return view('shopprocess.ordercheck',compact('orderResult','itembuys'));
     }
 
 

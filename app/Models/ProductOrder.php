@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductOrder extends Model
 {
     protected $table = 'product_orders';
-    protected $fillable = ['form_id', 'product_id', 'qty','price'];
+    protected $fillable = ['form_id', 'qty', 'price', 'name', 'desc', 'image'];
     public function orderForm()
     {
         // hasOne(關聯/對方的欄位/自己的欄位)：我有子表，並且是一對一
