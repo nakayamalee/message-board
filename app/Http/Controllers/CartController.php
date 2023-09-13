@@ -156,7 +156,7 @@ class CartController extends Controller
       public function cartDelete($id){
         // dd($id);
         $product = Product::find($id);
-        $this->FileService->deleteUpload($product->image);
+        // $this->FileService->deleteUpload($product->image);
         $product->delete();
         return redirect(route('namecartProductList'));
 

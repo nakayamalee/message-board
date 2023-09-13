@@ -18,7 +18,7 @@
             <div class="d-flex flex-column">
                 <label>
                     <div class="border container d-flex align-items-start rounded p-3">
-                        <input name="pay" type="radio" class="mr-3 mt-1" value="1">
+                        <input name="pay" type="radio" class="mr-3 mt-1" value="1" required>
                         <ul class="ms-2 p-0">
                             <li class="fw-bold">臨櫃匯款</li>
                             <li name="shop_account">0000-123456789-123456</li>
@@ -44,7 +44,7 @@
                 <a href="{{ route('shopDeliverGet') }}">
                     <button type="button">上一步</button>
                 </a>
-                <button type="submit">下一步</button>
+                <button type="submit">完成訂單</button>
             </div>
         </form>
     </div>

@@ -37,23 +37,26 @@
                     <div class="w-100">
                       @foreach ($itembuys as $itembuy)
                       {{-- ->responseSent ?? [] as $key => $r --}}
-                        <li class="card  w-100 d-flex flex-row align-items-center justify-content-between" style="width: 18rem;">
+                        <li id="row{{ $itembuy->id }}" class="card w-100 d-flex flex-row align-items-center justify-content-between" style="width: 18rem;">
                             {{-- @dd( $itembuy->product) --}}
-                            <img src="{{asset($itembuy->product->image)}}" class="card-img-top w-25" alt="...">
+                            <img src="{{asset($itembuy->product_withTrashed->image)}}" class="card-img-top w-25" alt="...">
                             <div class="card-body d-flex flex-row flex-wrap align-items-center w-50  justify-content-between">
                                 <div>
-                                    <h5 class="card-title">{{$itembuy->product->name}}</h5>
+                                    <h5 class="card-title">{{$itembuy->product_withTrashed->name}}</h5>
                                 </div>
-                                <p class="card-text">{{$itembuy->product->desc}}</p>
-                                <p class="card-text"> ${{$itembuy->product->price}}</p>
+                                <p class="card-text">{{$itembuy->product_withTrashed->desc}}</p>
+                                <p class="card-text"> ${{$itembuy->product_withTrashed->price}}</p>
                                 <div>
                                     <button type="button" class="controlBtn minusBtn" onclick="minus({{ $itembuy->id }})">-</button>
-                                    <input id="product{{ $itembuy->id }}" type="number" value="{{ $itembuy->qty }}" onchange="checkQty('{{$itembuy->id}}')" class="w-75">
+                                    <input id="product{{ $itembuy->id }}" type="number" value="{{ $itembuy->qty }}" onchange="inputQty('{{$itembuy->id}}')" class="w-75">
                                     <button type="button" class="controlBtn plusBtn" onclick="plus({{ $itembuy->id }})">+</button>
                                 </div>
                             </div>
                             <div id="price{{ $itembuy->id }}" class="me-5">
-                                ${{$itembuy->product->price * $itembuy->qty}}
+                                ${{$itembuy->product_withTrashed->price * $itembuy->qty}}
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-danger" onclick="deleteCart('{{ $itembuy->id }}')">移除</button>
                             </div>
                         </li>
                       @endforeach
@@ -62,12 +65,14 @@
                             <div class="p-2" id="total">${{$total}}</div>
                         </div>
                     </div>
-                    <div class=" w-100 d-flex justify-content-end">
-                        <a href="{{route('shopDeliverGet')}}">
-                            <button  type="submit" class="btn btn-primary align-self-end mt-2 p-2 ">
-                                下一步
-                            </button>
-                        </a>
+                    <div id="nextStep" class="w-100 d-flex justify-content-end">
+                        @if($itembuys->count())
+                            <a href="{{ route('shopDeliverGet') }}">
+                                <button type="submit" class="btn btn-primary align-self-end mt-2 p-2 ">
+                                    下一步
+                                </button>
+                            </a>
+                        @endif
                     </div>
                     <input id="addCartRoute" type="hidden" value="{{ route('nameUpdate') }}">
                 </ul>
@@ -92,8 +97,16 @@
     input.value++;
     checkQty(id, input.value);
   }
+  function inputQty(id) {
+    const input = document.querySelector(`input#product${id}`);
+    if (input.value <= 1) {
+        input.value = 1;
+    }
+    checkQty(id, input.value);
+  }
+
+
   function checkQty(id, qty) {
-    console.log(123);
     const formData = new FormData();
     formData.append('_token', '{{ csrf_token() }}');
     formData.append('_method', 'PUT');
@@ -123,7 +136,46 @@
     });
   }
 
+  function deleteCart(id) {
+    Swal.fire({
+        title: '確定要刪除此筆資料嗎?',
+        showDenyButton: true,
+        showCancelButton: true,
+        showConfirmButton: false,
+        denyButtonText: `刪除`,
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isDenied) {
+            const formData = new FormData();
+            formData.append('_token', '{{ csrf_token() }}');
+            formData.append('_method', 'DELETE');
+            formData.append('cart_id', id);
+            fetch('{{ route("shop.deleteCart") }}', {
+                method: 'POST',
+                body: formData,
+            }).then((res) => {
+                return res.json();
+            }).then((data) => {
+                if (data.code === 1) {
+                    const row = document.querySelector(`#row${data.id}`);
+                    const nextBtn = document.querySelector(`#nextStep`);
+                    const total = document.querySelector('#total');
+                    row.remove();
 
+                    const rows = document.querySelectorAll('[id^=row]');
+
+                    total.textContent = '$' + data.total;
+
+                    if (rows.length === 0) {
+                        nextBtn.textContent = '';
+                    }
+                } else {
+                    location.reload();
+                }
+            });
+        }
+    });
+  }
 
 
 

@@ -30,7 +30,6 @@ class ShopController extends Controller
      */
     public function storePrice(Request $request)
     {
-        // dd($request);
 
 
         // return redirect(route('shopDeliverGet'));
@@ -39,7 +38,8 @@ class ShopController extends Controller
     }
     public function storeDeliver(Request $request)
     {
-        // dd($request);
+        // 驗證
+
          $request->session()->put('name',$request->name);
          $request->session()->put('address',$request->address);
          $request->session()->put('date',$request->date);
@@ -47,7 +47,6 @@ class ShopController extends Controller
          $request->session()->put('menu',$request->menu);
 
 
-        //  dd(session()->all());
 
 
         return redirect(route('shopMoneyGet'));
@@ -56,21 +55,18 @@ class ShopController extends Controller
     }
     public function storeMoney(Request $request)
     {
-        // dd($request);
-        //   dd(session()->get('name'));
-        $request->session()->put('pay',$request->pay);
-
+        $request->validate([
+            'pay' => 'required|numeric',
+        ]);
         OrderForm::create([
-
             'user_id' =>$request->user()->id,
-            'name' =>session()->get('name'),
-            'address' =>session()->get('address'),
-            'date' =>session()->get('date'),
-            'phone' =>session()->get('phone'),
-            'menu' =>session()->get('menu'),
-            'total' =>session()->get('total'),
-            'pay' =>session()->get('pay'),
-
+            'name' => session()->get('name'),
+            'address' => session()->get('address'),
+            'date' => session()->get('date'),
+            'phone' => session()->get('phone'),
+            'menu' => session()->get('menu'),
+            'total' => session()->get('total'),
+            'pay' => $request->pay,
         ]);
 
         return redirect(route('shopThxGet'));
@@ -98,7 +94,6 @@ class ShopController extends Controller
     // public function update(Request $request, string $id)
     public function update(Request $request)
     {
-        // dd($request->all());
 
         $request->validate([
             'qty'=>'required|min:1|numeric',
@@ -107,7 +102,6 @@ class ShopController extends Controller
 
         // $cart = Cart::where('user_id',$request->user()->id)->where('product_id',$request->product_id);
         $cart = Cart::find($request->cart_id);
-        // dd($cart);
         $updateCart=$cart ->update([
          'qty'=>$request->qty,
         //  'user_id'=>$request->user()->id,
@@ -115,11 +109,32 @@ class ShopController extends Controller
 
         return(object)[
             'code'=>$updateCart ? 1 : 0,
-            'price'=>($cart->product?->price ?? 0)* $cart->qty,
+            'price'=>($cart->product_withTrashed?->price ?? 0)* $cart->qty,
         ];
 
 
 
+    }
+
+    public function deleteCart(Request $request)
+    {
+        $request->validate([
+            'cart_id' => 'required|exists:carts,id',
+        ]);
+
+        $cart = Cart::find($request->cart_id)->delete();
+
+        $carts = Cart::where('user_id', $request->user()->id)->get();
+        
+        $total = 0;
+        foreach ($carts as $value) {
+            $total += $value->product_withTrashed->price * $value->qty;
+        }
+        return (object)[
+            'code' => $cart ? 1 : 0,
+            'id' => $request->cart_id,
+            'total' => $total,
+        ];
     }
 
     /**
@@ -137,7 +152,7 @@ class ShopController extends Controller
         $total = 0;
         // $itembuys = Cart::get();
         foreach($itembuys as $value){
-            $total += $value->product->price * $value->qty;
+            $total += $value->product_withTrashed->price * $value->qty;
         };
 
         session()->forget('total');
@@ -149,12 +164,12 @@ class ShopController extends Controller
     public function deliver()
     {
         $hasBeen = session()->all();
+
         return view('shopprocess.deliver',compact('hasBeen'));
     }
 
     public function money()
     {
-
         return view('shopprocess.money');
     }
 
@@ -174,7 +189,7 @@ class ShopController extends Controller
                 'form_id' =>$latestOrder_id,
                 'product_id' =>$itembuy->product_id,
                 'qty' =>$itembuy->qty,
-                'price' =>$itembuy->product->price,
+                'price' =>$itembuy->product_withTrashed->price,
             ]);
         }
 

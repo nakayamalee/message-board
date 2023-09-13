@@ -106,6 +106,7 @@ Route::middleware('auth')->prefix('/shop')->group(function () {
     // 第一頁(商品)
     Route::get('/orderdetails', [ShopController::class, 'orderdetails'])->name('shopOrderdetailsGet');
     Route::put('/update', [ShopController::class, 'update'])->name('nameUpdate');
+    Route::delete('/delete-cart', [ShopController::class, 'deleteCart'])->name('shop.deleteCart');
 
     // Route::get('/store/price', [ShopController::class, 'storePrice'])->name('shopStorePrice');
 
