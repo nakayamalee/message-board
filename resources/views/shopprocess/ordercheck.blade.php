@@ -29,7 +29,6 @@
             備註：{{$result->menu}}<br>
             匯款方式：
             @if($result->pay == 1)
-
                 <ul class="ms-2 p-0">
                     <li class="fw-bold">臨櫃匯款</li>
                     <li name="shop_account">0000-123456789-123456</li>

@@ -65,7 +65,7 @@
         </div>
         @auth
             <div style="white-space: nowrap;" class="d-flex align-items-center me-3">
-                hi,{{Auth::user()->name}}
+                hitemplates,{{Auth::user()->name}}
             </div>
             <div>
                 <form method="POST" action="{{route('logout')}}">
@@ -85,16 +85,16 @@
             </div>
         @endguest
         <div class="top-search-right d-flex align-items-center">
-          <a href="#" class="position-relative d-none d-lg-block ">
-            <i class="bi bi-heart top-icon"></i>
-            <span class="position-absolute badge badge-circle text-bg-success rounded-circle">5</span>
+          <a href="#">
+            <i class="bi bi-card-list"></i>
+            {{-- <span class="position-absolute badge badge-circle text-bg-success rounded-circle">5</span> --}}
           </a>
           <a href="{{route('user.info')}}">
             <i class="bi bi-person top-icon"></i>
           </a>
           <a href="{{route('shopOrderdetailsGet')}}" class="position-relative">
             <i class="bi bi-cart2 top-icon"></i>
-            <span class="position-absolute badge badge-circle text-bg-success rounded-circle">1</span>
+            {{-- <span class="position-absolute badge badge-circle text-bg-success rounded-circle">1</span> --}}
           </a>
           <button class="btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
             aria-controls="offcanvasExample">

@@ -22,7 +22,7 @@
                         <a href="{{ route('nameIndex') }}">
                             <button type="button" class="btn btn-primary m-5">回首頁</button>
                         </a>
-                        <a href="{{ route('shopOrderCheck') }}">
+                        <a href="{{ route('user.order.list') }}">
                             <button type="button" class="btn btn-primary m-5">查看訂單</button>
                         </a>
                     </div>

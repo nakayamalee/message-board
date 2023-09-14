@@ -61,6 +61,7 @@ class ShopController extends Controller
             'pay' => 'required|numeric',
         ]);
 
+
         // 找購物車屬於使用者的資料
         $itembuys = Cart::where('user_id',$request->user()->id)->get();
 
@@ -107,15 +108,18 @@ class ShopController extends Controller
 
         session()->forget(['name', 'address', 'date', 'phone', 'menu']);
 
-        $data = [
-            'name' => $request->user()->name,
-            'order_id' => $form->order_id,
-            'total' => $total,
-        ];
+        // $data = [
+        //     'name' => $request->user()->name,
+        //     'order_id' => $form->order_id,
+        //     'total' => $total,
+        // ];
 
-        Mail::to($request->user()->email)->send(new OrderCreated($data));
-
-        return redirect(route('shopThxGet'));
+        // Mail::to($request->user()->email)->send(new OrderCreated($data));
+        if ($request->pay === 1) {
+            return redirect(route('shopThxGet'));
+        } else {
+            return redirect(route('ecpay', ['order_id' => $form->id]));
+        }
     }
 
     /**

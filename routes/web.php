@@ -47,8 +47,10 @@ Route::delete('/reDelete/{id}',[HwController::class, ('hwReDelete')])->name('nam
 
 // 使用者資訊頁面---(有登入才可以到自己的使用者登入頁面)--------------------------------------------------------------------------------
 Route::middleware('auth','role.weight:2')->prefix('/user')->group(function () {
-Route::get('/information',[FrontController::class,('user_info')])->name('user.info');
-Route::post('/information/update',[FrontController::class,('user_info_update')])->name('user.info.update');
+    Route::get('/information',[FrontController::class,('user_info')])->name('user.info');
+    Route::post('/information/update',[FrontController::class,('user_info_update')])->name('user.info.update');
+    Route::get('/order/list', [FrontController::class, 'order_list'])->name('user.order.list');
+    Route::get('/order/list/detail/{order_forms_id}', [FrontController::class, 'order_detail'])->name('user.order.detail');
 });
 
 Route::middleware('auth')->post('/products/add-carts', [FrontController::class, 'add_cart'])->name('front.addCart');
@@ -115,8 +117,8 @@ Route::middleware('auth')->prefix('/shop')->group(function () {
     Route::post('/store/deliver', [ShopController::class, 'storeDeliver'])->name('shopStoreDeliver');
 
     // 第三頁(付款)
-    Route::post('/store/money', [ShopController::class, 'storeMoney'])->name('shopStoreMoney');
     Route::get('/money', [ShopController::class, 'money'])->name('shopMoneyGet');
+    Route::post('/store/money', [ShopController::class, 'storeMoney'])->name('shopStoreMoney');
 
     // 第四頁(感謝)
     // Route::post('/store/order', [ShopController::class, 'thx'])->name('shopStoreOrder');
@@ -147,3 +149,5 @@ Route::middleware('auth')->prefix('/shop')->group(function () {
 // Route::post('/cart-update/{id}', [CartController::class, ('cartUpdate')])->name('namecartUpdate');
 // Route::post('/cart-delete/{id}', [CartController::class, ('cartDelete')])->name('nameCartDelete');
 
+Route::get('/ECPay/{order_id}', [FrontController::class, 'ec_pay'])->name('ecpay');
+Route::get('/ECPay/return_back', [FrontController::class, 'ec_pay_return'])->name('ecpay.returnBack');
